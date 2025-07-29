@@ -9,7 +9,9 @@ function Home() {
       {Array.isArray(recipes) && recipes.length > 0 ? (
         recipes.map((item, index) => <RecipeBox item={item} key={index} />)
       ) : (
-        <h1>Nothing to show, please search </h1>
+        <h1 className="ml-[40%] text-lg font-bold mt-8">
+          Nothing to show, Please search{" "}
+        </h1>
       )}
     </div>
   );

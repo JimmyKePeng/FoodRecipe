@@ -1,70 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useRecipe } from "./RecipeContext";
-
+import { useNavigate } from "react-router-dom";
 export default function Narbar() {
   const [input, setInput] = useState("");
   const { recipes, setRecipes } = useRecipe();
-
+  const navigate = useNavigate();
   async function handleSubmit(e) {
     e.preventDefault();
     setRecipes(input);
-    // setRecipes([
-    //   {
-    //     publisher: "All Recipes",
-    //     image_url: "http://forkify-api.herokuapp.com/images/100111309d9.jpg",
-    //     title: "Double Crust Stuffed Pizza",
-    //     id: "664c8f193e7aa067e94e8297",
-    //   },
-    //   {
-    //     publisher: "BBC Good Food",
-    //     image_url:
-    //       "http://forkify-api.herokuapp.com/images/2150654_MEDIUM6068.jpg",
-    //     title: "Pizza bianco with artichoke hearts",
-    //     id: "664c8f193e7aa067e94e897b",
-    //   },
-    //   {
-    //     publisher: "Vintage Mixer",
-    //     image_url:
-    //       "http://forkify-api.herokuapp.com/images/CauliflowerPizzaCrustRecipe06fdc.jpg",
-    //     title: "Cauliflower Pizza Crust Recipe",
-    //     id: "664c8f193e7aa067e94e8906",
-    //   },
-    //   {
-    //     publisher: "101 Cookbooks",
-    //     image_url:
-    //       "http://forkify-api.herokuapp.com/images/best_pizza_dough_recipe1b20.jpg",
-    //     title: "Best Pizza Dough Ever",
-    //     id: "664c8f193e7aa067e94e8704",
-    //   },
-    //   {
-    //     publisher: "All Recipes",
-    //     image_url: "http://forkify-api.herokuapp.com/images/100111309d9.jpg",
-    //     title: "Double Crust Stuffed Pizza",
-    //     id: "664c8f193e7aa067e94e8297",
-    //   },
-    //   {
-    //     publisher: "BBC Good Food",
-    //     image_url:
-    //       "http://forkify-api.herokuapp.com/images/2150654_MEDIUM6068.jpg",
-    //     title: "Pizza bianco with artichoke hearts",
-    //     id: "664c8f193e7aa067e94e897b",
-    //   },
-    //   {
-    //     publisher: "Vintage Mixer",
-    //     image_url:
-    //       "http://forkify-api.herokuapp.com/images/CauliflowerPizzaCrustRecipe06fdc.jpg",
-    //     title: "Cauliflower Pizza Crust Recipe",
-    //     id: "664c8f193e7aa067e94e8906",
-    //   },
-    //   {
-    //     publisher: "101 Cookbooks",
-    //     image_url:
-    //       "http://forkify-api.herokuapp.com/images/best_pizza_dough_recipe1b20.jpg",
-    //     title: "Best Pizza Dough Ever",
-    //     id: "664c8f193e7aa067e94e8704",
-    //   },
-    // ]);
 
     try {
       const response = await fetch(
@@ -77,6 +21,7 @@ export default function Narbar() {
       }
     } catch (err) {}
     setInput("");
+    navigate("/");
   }
   return (
     <>
@@ -84,8 +29,8 @@ export default function Narbar() {
         <h1 className="">Food Recipe</h1>
         <form onSubmit={handleSubmit}>
           <input
-            className="bg-white rounded-3xl pl-4 w-[100%]"
-            placeholder="Enter food here"
+            className="bg-white rounded-3xl pl-4 w-[100%] h-12"
+            placeholder="Enter a food or ingredient here"
             value={input}
             onChange={(e) => setInput(e.target.value)}
           />
